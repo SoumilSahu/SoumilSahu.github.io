@@ -3,33 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site.title }}</title>
+    <title>{{ page.title | default: site.title }}</title>
     <style>
-        /* This is where you write your custom CSS from scratch */
+        /* Deep Blue Space Theme */
+        :root {
+            --bg-deep: #050A1F;
+            --bg-mid: #0B1633;
+            --bg-light: #1A2952;
+            --text-main: #E2E8F0;
+            --accent: #64FFDA; /* Cyan accent for high contrast */
+        }
+
         body {
+            margin: 0;
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #fcfcfc;
-            color: #222;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 10, 31, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 1.2rem 0;
+            text-align: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        nav a {
+            margin: 0 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* BNS Loading Animation Overlay */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-deep);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        #loader-wrapper img {
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        #loader-wrapper p {
+            margin-top: 20px;
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Content Formatting */
+        main {
+            padding-top: 70px; /* Offset for fixed nav */
+            min-height: 100vh;
+        }
+
+        .standard-page {
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
-        nav { margin-bottom: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 1rem; }
-        nav a { margin-right: 1rem; text-decoration: none; color: #0056b3; font-weight: bold; }
-        .publication-list { line-height: 1.8; }
+        
+        .standard-page a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); }
     </style>
 </head>
 <body>
 
+    <div id="loader-wrapper">
+        <img src="/assets/bns-inspiral.gif" alt="BNS Inspiral">
+        <p>Inspiralling...</p>
+    </div>
+
     <nav>
         <a href="/">Home</a>
+        <a href="/blog">Blog</a>
         <a href="/research">Research</a>
+        <a href="/life-at-iucaa">Life@IUCAA</a>
         <a href="/teaching">Teaching</a>
+        <a href="/contact">Contact</a>
     </nav>
 
     <main>
-        {{ content }}
+        {% if page.url == '/' %}
+            {{ content }}
+        {% else %}
+            <div class="standard-page">
+                {{ content }}
+            </div>
+        {% endif %}
     </main>
 
+    <script>
+        // Remove loader when page loads
+        window.addEventListener('load', function() {
+            document.getElementById('loader-wrapper').classList.add('fade-out');
+        });
+
+        // Trigger loader when clicking a nav link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.hostname === window.location.hostname) {
+                    e.preventDefault();
+                    let destination = this.href;
+                    document.getElementById('loader-wrapper').classList.remove('fade-out');
+                    // Wait 800ms to play the animation before navigating
+                    setTimeout(() => {
+                        window.location.href = destination;
+                    }, 800); 
+                }
+            });
+        });
+    </script>
 </body>
 </html>
