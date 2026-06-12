@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Life at IUCAA
+title: Blog
 ---
 
 # Life at IUCAA
