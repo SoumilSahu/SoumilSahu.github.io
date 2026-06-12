@@ -1,0 +1,15 @@
+title: My Research Portfolio
+description: Theoretical Astrophysics, Equation of State, and Gravitational Waves
+url: "https://[your-github-username].github.io"
+
+# Do not load any default themes
+theme: null
+
+# Enable the BibTeX parser
+plugins:
+  - jekyll-scholar
+
+scholar:
+  style: ieee # Uses standard IEEE citation formatting
+  source: ./_bibliography
+  bibliography: references.bib
