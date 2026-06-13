@@ -127,18 +127,23 @@
     </main>
 
     <script>
-        // Remove loader when page loads
-        window.addEventListener('load', function() {
+        // 1. Handle normal page loads AND back-button (bfcache) restores
+        window.addEventListener('pageshow', function(event) {
+            // This ensures the loader fades out even if loaded from browser history
             document.getElementById('loader-wrapper').classList.add('fade-out');
         });
 
-        // Trigger loader when clicking a nav link
+        // 2. Trigger the loader when clicking a nav link
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', function(e) {
+                // Only trigger for links within your own website
                 if (this.hostname === window.location.hostname) {
                     e.preventDefault();
                     let destination = this.href;
+                    
+                    // Show the loader
                     document.getElementById('loader-wrapper').classList.remove('fade-out');
+                    
                     // Wait 800ms to play the animation before navigating
                     setTimeout(() => {
                         window.location.href = destination;
