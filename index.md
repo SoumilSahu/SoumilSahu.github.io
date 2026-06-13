@@ -84,6 +84,6 @@ title: Home
 
 <div class="summary-box">
     <h2>About Me</h2>
-    <p>I am a researcher studying the extremes of the universe. My work primarily focuses on the equation of state of dense matter in neutron stars and continuous gravitational wave emissions.</p>
+    <p> I am a researcher studying the extremes of the universe. My work primarily focuses on the equation of state of dense matter in neutron stars and continuous gravitational wave emissions.</p>
     <p>Use the navigation bar above to explore my research, read my blog, or check out what life is like at IUCAA.</p>
 </div>
