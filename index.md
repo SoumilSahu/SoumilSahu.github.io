@@ -14,7 +14,8 @@ title: Home
 
     .hero-left {
         width: 40%;
-        background-image: url('/assets/profile.jpg');
+        /* background-image: url('/assets/profile.jpg'); */
+        background-image: url('https://github.com/soumilsahu.png');
         background-size: cover;
         background-position: center;
         border-right: 2px solid var(--accent);
