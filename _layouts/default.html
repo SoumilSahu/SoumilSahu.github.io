@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Deep Blue Space Theme */
         :root {
@@ -96,6 +97,47 @@
             line-height: 1.8;
             font-size: 1.1rem;
         }
+
+        /* Footer & Social Icons */
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px dashed var(--bg-light);
+            background-color: var(--bg-deep);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            font-size: 2.2rem; /* Large, visible icons */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+            text-decoration: none;
+        }
+
+        /* The Hover Effect: Float up and glow */
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.1);
+            filter: drop-shadow(0px 10px 15px currentColor);
+            border-bottom: none; /* Overrides the dashed border from standard-page links */
+        }
+
+        /* Official Brand Colors */
+        .fa-envelope { color: #ea4335; }  /* Gmail Red */
+        .fa-instagram { color: #e1306c; } /* Instagram Pink */
+        .fa-linkedin { color: #0077b5; }  /* LinkedIn Blue */
+        .fa-github { color: #ffffff; }    /* GitHub White */
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
         
         .standard-page a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); }
     </style>
@@ -125,6 +167,27 @@
         {% endif %}
     </main>
 
+    <footer>
+        <div class="social-links">
+            <a href="mailto:soumil.sahu32@gmail.com" target="_blank" title="Email Me">
+                <i class="fas fa-envelope"></i>
+            </a>
+            
+            <a href="https://instagram.com/at_soumil" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            
+            <a href="https://linkedin.com/in/soumilsahu" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://github.com/soumilsahu" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <p class="footer-text">&copy; 2026 Soumil Sahu</p>
+    </footer>
+    
     <script>
         // 1. Handle normal page loads AND back-button (bfcache) restores
         window.addEventListener('pageshow', function(event) {
